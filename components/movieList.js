@@ -21,6 +21,7 @@ import { styles } from '../theme';
 const { width, height } = Dimensions.get('window');
 
 export default function MovieList({ title, hideSeeAll, data }) {
+  const items = { title, data };
   let movieName = 'Ant-Man and the Wasp: Quantumania';
   const navigation = useNavigation();
   return (
@@ -28,7 +29,9 @@ export default function MovieList({ title, hideSeeAll, data }) {
       <View className="mx-4 flex-row justify-between items-center">
         <Text className="text-white text-lg">{title}</Text>
         {!hideSeeAll && (
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.push('AllCategoryScreen', items)}
+          >
             <Text style={styles.text} className="text-lg">
               See All
             </Text>
@@ -41,31 +44,34 @@ export default function MovieList({ title, hideSeeAll, data }) {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 15 }}
       >
-        {data.map((item, index) => {
-          return (
-            <TouchableWithoutFeedback
-              key={index}
-              onPress={() => navigation.push('Movie', item)}
-            >
-              <View className="space-y-1 mr-4">
-                <Image
-                //   source={require('../assets/images/moviePoster2.png')}
-                    source={{uri: image185(item.poster_path) || fallbackMoviePoster}}
-                  className="rounded-3xl"
-                  style={{ width: width * 0.33, height: height * 0.22 }}
-                />
-                <Text className="text-neutral-300 ml-1">
-                  {item.title?.length > 14
-                    ? item.title.slice(0, 14) + '...'
-                    : item.title}
-                  {/* {movieName.length > 14
+        {data &&
+          data.map((item, index) => {
+            return (
+              <TouchableWithoutFeedback
+                key={index}
+                onPress={() => navigation.push('Movie', item)}
+              >
+                <View className="space-y-1 mr-4">
+                  <Image
+                    //   source={require('../assets/images/moviePoster2.png')}
+                    source={{
+                      uri: image185(item.poster_path) || fallbackMoviePoster,
+                    }}
+                    className="rounded-3xl"
+                    style={{ width: width * 0.33, height: height * 0.22 }}
+                  />
+                  <Text className="text-neutral-300 ml-1">
+                    {item.title?.length > 14
+                      ? item.title.slice(0, 14) + '...'
+                      : item.title}
+                    {/* {movieName.length > 14
                     ? movieName.slice(0, 14) + '...'
                     : movieName} */}
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
-          );
-        })}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+            );
+          })}
       </ScrollView>
     </View>
   );
