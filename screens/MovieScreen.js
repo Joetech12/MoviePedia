@@ -39,12 +39,14 @@ export default function MovieScreen() {
   const [isFavourite, toggleFavourite] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  //   useEffect(()=>{
-  //     setLoading(true);
-  //     getMovieDetials(item.id);
-  //     getMovieCredits(item.id);
-  //     getSimilarMovies(item.id);
-  //   },[item]);
+  let movieName = 'Ant-Man and the Wasp: Quantumania';
+
+  useEffect(() => {
+    setLoading(true);
+    getMovieDetails(item.id);
+    getMovieCredits(item.id);
+    getSimilarMovies(item.id);
+  }, [item]);
 
   const getMovieDetails = async (id) => {
     const data = await fetchMovieDetails(id);
@@ -100,7 +102,7 @@ export default function MovieScreen() {
         ) : (
           <View>
             <Image
-              // source={require('../assets/images/moviePoster2.png')}
+              //   source={require('../assets/images/moviePoster2.png')}
               source={{
                 uri: image500(movie.poster_path) || fallbackMoviePoster,
               }}
@@ -125,6 +127,7 @@ export default function MovieScreen() {
         {/* title */}
         <Text className="text-white text-center text-3xl font-bold tracking-widest">
           {movie?.title}
+          {/* {movieName} */}
         </Text>
         {/* status, release year, runtime */}
         {movie?.id ? (
@@ -132,7 +135,10 @@ export default function MovieScreen() {
             {movie?.status} • {movie?.release_date?.split('-')[0] || 'N/A'} •{' '}
             {movie?.runtime} min
           </Text>
-        ) : null}
+        ) : //   <Text className="text-neutral-400 font-semibold text-base text-center">
+        //     Released • 2020 • 170 min
+        //   </Text>
+        null}
         {/* genres  */}
         <View className="flex-row justify-center mx-4 space-x-2">
           {movie?.genres?.map((genre, index) => {

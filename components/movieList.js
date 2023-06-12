@@ -21,6 +21,7 @@ import { styles } from '../theme';
 const { width, height } = Dimensions.get('window');
 
 export default function MovieList({ title, hideSeeAll, data }) {
+  let movieName = 'Ant-Man and the Wasp: Quantumania';
   const navigation = useNavigation();
   return (
     <View className="mb-8 space-y-4">
@@ -48,8 +49,8 @@ export default function MovieList({ title, hideSeeAll, data }) {
             >
               <View className="space-y-1 mr-4">
                 <Image
-                  source={require('../assets/images/moviePoster2.png')}
-                  //   source={{uri: image185(item.poster_path) || fallbackMoviePoster}}
+                //   source={require('../assets/images/moviePoster2.png')}
+                    source={{uri: image185(item.poster_path) || fallbackMoviePoster}}
                   className="rounded-3xl"
                   style={{ width: width * 0.33, height: height * 0.22 }}
                 />
@@ -57,6 +58,9 @@ export default function MovieList({ title, hideSeeAll, data }) {
                   {item.title?.length > 14
                     ? item.title.slice(0, 14) + '...'
                     : item.title}
+                  {/* {movieName.length > 14
+                    ? movieName.slice(0, 14) + '...'
+                    : movieName} */}
                 </Text>
               </View>
             </TouchableWithoutFeedback>
