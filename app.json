@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "moviepedia",
+    "name": "Moviepedia",
     "slug": "moviepedia",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.jpg",
+    "icon": "./assets/icon2.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash_moviepedia.jpg",
+      "image": "./assets/splash2.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -18,11 +18,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon2.png",
-        "backgroundColor": "#000000"
-      }
+        "backgroundColor": "#1a1a1a"
+      },
+      "package": "com.thegraphixceo.moviepedia"
     },
     "web": {
-      "favicon": "./assets/favicon.jpg"
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ed0c88b2-f388-4a49-8f4c-028b2f319dd4"
+      }
     }
   }
 }
